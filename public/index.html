@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>AI Policy IQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&family=Work+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- Attract screen: shown when idle, invites the next visitor to tap -->
+    <section id="screen-attract" class="screen active">
+      <div class="attract-content">
+        <div class="attract-badge">Event Quiz</div>
+        <h1 id="attract-title">AI Policy IQ</h1>
+        <p id="attract-subtitle">Tap to test your knowledge</p>
+        <button class="tap-target pulse" id="start-btn">Tap to Start</button>
+      </div>
+    </section>
+
+    <!-- Question screen -->
+    <section id="screen-question" class="screen">
+      <header class="quiz-header">
+        <span class="category-pill" id="q-category">Category</span>
+        <div class="progress-dots" id="progress-dots"></div>
+      </header>
+      <div class="question-body">
+        <h2 id="q-text">Question text goes here</h2>
+        <div class="answers-grid" id="answers-grid"></div>
+      </div>
+    </section>
+
+    <!-- Feedback overlay: correct / incorrect -->
+    <section id="screen-feedback" class="screen feedback">
+      <div class="feedback-card">
+        <div class="feedback-icon" id="feedback-icon">✓</div>
+        <div class="feedback-label" id="feedback-label">Correct!</div>
+        <p class="feedback-explanation" id="feedback-explanation"></p>
+        <button class="tap-target continue-btn" id="continue-btn">Tap to Continue</button>
+      </div>
+    </section>
+
+    <!-- Results screen -->
+    <section id="screen-results" class="screen">
+      <div class="results-content">
+        <div class="results-badge" id="results-emoji">🎉</div>
+        <h2 id="results-headline">Nice work!</h2>
+        <p class="results-score"><span id="results-score">0</span> / <span id="results-total">0</span> correct</p>
+        <button class="tap-target" id="again-btn">Play Again</button>
+        <div class="auto-reset-bar"><div class="auto-reset-fill" id="auto-reset-fill"></div></div>
+        <p class="auto-reset-note">Returning to start automatically&hellip;</p>
+      </div>
+    </section>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

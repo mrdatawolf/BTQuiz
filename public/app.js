@@ -1,0 +1,183 @@
+(function () {
+  "use strict";
+
+  let CONFIG = { title: "AI Policy IQ", subtitle: "Tap to test your knowledge", questionsPerRound: 5, autoResetSeconds: 25 };
+  let BANK = [];
+  let round = [];
+  let currentIndex = 0;
+  let score = 0;
+  let resetTimer = null;
+
+  const screens = {
+    attract: document.getElementById("screen-attract"),
+    question: document.getElementById("screen-question"),
+    feedback: document.getElementById("screen-feedback"),
+    results: document.getElementById("screen-results")
+  };
+
+  function show(name) {
+    Object.values(screens).forEach((s) => s.classList.remove("active"));
+    screens[name].classList.add("active");
+  }
+
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  // Shuffle answer order per-question so the correct slot isn't always the same position.
+  function prepareQuestion(q) {
+    const order = shuffle(q.answers.map((_, i) => i));
+    return {
+      id: q.id,
+      category: q.category,
+      question: q.question,
+      explanation: q.explanation,
+      answers: order.map((i) => q.answers[i]),
+      correctIndex: order.indexOf(q.correctIndex)
+    };
+  }
+
+  async function loadData() {
+    const res = await fetch("/api/questions");
+    const data = await res.json();
+    CONFIG = data.config;
+    BANK = data.questions;
+    document.getElementById("attract-title").textContent = CONFIG.title;
+    document.getElementById("attract-subtitle").textContent = CONFIG.subtitle;
+  }
+
+  function startRound() {
+    clearTimeout(resetTimer);
+    const count = Math.min(CONFIG.questionsPerRound, BANK.length);
+    round = shuffle(BANK).slice(0, count).map(prepareQuestion);
+    currentIndex = 0;
+    score = 0;
+    renderProgress();
+    renderQuestion();
+    show("question");
+  }
+
+  function renderProgress() {
+    const el = document.getElementById("progress-dots");
+    el.innerHTML = "";
+    round.forEach((_, i) => {
+      const dot = document.createElement("div");
+      dot.className = "dot" + (i < currentIndex ? " done" : i === currentIndex ? " current" : "");
+      el.appendChild(dot);
+    });
+  }
+
+  function renderQuestion() {
+    const q = round[currentIndex];
+    document.getElementById("q-category").textContent = q.category;
+    document.getElementById("q-text").textContent = q.question;
+
+    const grid = document.getElementById("answers-grid");
+    grid.innerHTML = "";
+
+    q.answers.forEach((text, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "answer-btn";
+      btn.textContent = text;
+      btn.addEventListener("click", () => handleAnswer(idx));
+      grid.appendChild(btn);
+    });
+  }
+
+  function handleAnswer(choiceIndex) {
+    const q = round[currentIndex];
+    const correct = choiceIndex === q.correctIndex;
+    if (correct) score++;
+
+    const buttons = Array.from(document.querySelectorAll(".answer-btn"));
+    buttons.forEach((b, i) => {
+      b.classList.add("disabled");
+      if (i === q.correctIndex) b.classList.add("reveal-correct");
+      else if (i === choiceIndex) b.classList.add("reveal-wrong");
+    });
+
+    logResponse(q.id, choiceIndex, correct);
+
+    setTimeout(() => showFeedback(correct, q.explanation), 450);
+  }
+
+  function logResponse(questionId, choiceIndex, correct) {
+    fetch("/api/responses", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ questionId, choiceIndex, correct })
+    }).catch(() => {});
+  }
+
+  function showFeedback(correct, explanation) {
+    const icon = document.getElementById("feedback-icon");
+    const label = document.getElementById("feedback-label");
+    icon.className = "feedback-icon " + (correct ? "correct" : "wrong");
+    icon.textContent = correct ? "✓" : "✕";
+    label.textContent = correct ? "Correct!" : "Not quite";
+    document.getElementById("feedback-explanation").textContent = explanation;
+
+    const isLastQuestion = currentIndex >= round.length - 1;
+    document.getElementById("continue-btn").textContent = isLastQuestion ? "Tap to See Results" : "Tap to Continue";
+
+    show("feedback");
+  }
+
+  function nextStep() {
+    currentIndex++;
+    if (currentIndex >= round.length) {
+      showResults();
+    } else {
+      renderProgress();
+      renderQuestion();
+      show("question");
+    }
+  }
+
+  function showResults() {
+    const total = round.length;
+    document.getElementById("results-score").textContent = score;
+    document.getElementById("results-total").textContent = total;
+
+    const pct = total ? score / total : 0;
+    let emoji = "👍";
+    let headline = "Nice work!";
+    if (pct === 1) { emoji = "🏆"; headline = "Perfect score!"; }
+    else if (pct >= 0.6) { emoji = "🎉"; headline = "Nice work!"; }
+    else { emoji = "💡"; headline = "Good try — now you know!"; }
+    document.getElementById("results-emoji").textContent = emoji;
+    document.getElementById("results-headline").textContent = headline;
+
+    show("results");
+    startAutoReset();
+  }
+
+  function startAutoReset() {
+    const fill = document.getElementById("auto-reset-fill");
+    const seconds = CONFIG.autoResetSeconds;
+    fill.style.transition = "none";
+    fill.style.width = "100%";
+    requestAnimationFrame(() => {
+      fill.style.transition = `width ${seconds}s linear`;
+      fill.style.width = "0%";
+    });
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(returnToAttract, seconds * 1000);
+  }
+
+  function returnToAttract() {
+    clearTimeout(resetTimer);
+    show("attract");
+  }
+
+  document.getElementById("start-btn").addEventListener("click", startRound);
+  document.getElementById("again-btn").addEventListener("click", startRound);
+  document.getElementById("continue-btn").addEventListener("click", nextStep);
+
+  loadData().then(() => show("attract"));
+})();

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AI Policy IQ &mdash; Stats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    color-scheme: dark;
+    /* Palette matches the BTTechExpo2026 sister app (css/style.css) */
+    --surface-0: #0e2126;
+    --surface-1: #171a33;
+    --surface-2: rgba(255,255,255,0.06);
+    --text-primary: #ffffff;
+    --text-secondary: #aed0ce;
+    --text-muted: #7d9a98;
+    --border: rgba(255,255,255,0.16);
+    --series-1: #4f99a3;
+    --accent: #e8a33d;
+    --good: #4fbd82;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Work Sans', system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--surface-0);
+    color: var(--text-primary);
+    padding: 24px clamp(16px, 4vw, 48px) 64px;
+  }
+  h1 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: clamp(24px, 3vw, 34px); margin: 0 0 4px; }
+  .subtitle { color: var(--text-secondary); margin: 0 0 28px; }
+
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 36px;
+    max-width: 900px;
+  }
+  .tile {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  .tile .value {
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .tile .label { color: var(--text-secondary); font-size: 14px; margin-top: 4px; }
+
+  .toolbar { display: flex; gap: 12px; align-items: center; margin-bottom: 20px; }
+  .toolbar button {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .toolbar button.active { background: var(--accent); border-color: var(--accent); color: var(--surface-1); font-weight: 600; }
+
+  .question-card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    max-width: 900px;
+  }
+  .question-card .category {
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .question-card h3 { margin: 4px 0 18px; font-size: 18px; font-weight: 600; }
+
+  .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .bar-row .row-label {
+    width: 34%;
+    min-width: 120px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .bar-row .row-label .check {
+    color: var(--good);
+    font-weight: 700;
+  }
+  .bar-track {
+    flex: 1;
+    background: var(--surface-2);
+    border-radius: 4px;
+    height: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px 0 0 4px;
+    background: var(--series-1);
+    min-width: 2px;
+  }
+  .bar-fill.correct { background: var(--good); }
+  .bar-count {
+    width: 56px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 900px;
+    font-size: 14px;
+  }
+  table th, table td {
+    border-bottom: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+  }
+  table th { color: var(--text-muted); font-weight: 600; }
+
+  .empty { color: var(--text-muted); margin-top: 40px; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+  <h1>AI Policy IQ &mdash; Today&rsquo;s Picks</h1>
+  <p class="subtitle">Anonymous answer data collected from the event kiosk. No visitor identifiers are stored.</p>
+
+  <div class="tiles" id="tiles"></div>
+
+  <div class="toolbar">
+    <button id="view-chart" class="active">Chart view</button>
+    <button id="view-table">Table view</button>
+    <button id="refresh">Refresh</button>
+  </div>
+
+  <div id="chart-view"></div>
+  <div id="table-view" class="hidden"></div>
+  <p class="empty hidden" id="empty-msg">No responses yet &mdash; picks will appear here as people play.</p>
+
+  <script src="stats.js"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+[
+  {
+    "id": "q1",
+    "category": "AI Security Basics",
+    "question": "Under the Green / Yellow / Red rule, which color means STOP — don't enter it into an AI tool without specific approval?",
+    "answers": ["Green", "Yellow", "Red", "Purple"],
+    "correctIndex": 2,
+    "explanation": "Red covers sensitive, private, regulated, financial, personnel, and security information. Stop and get it specifically approved first."
+  },
+  {
+    "id": "q2",
+    "category": "AI Security Basics",
+    "question": "True or false: you own the work you submit, send, approve, or act on — not the AI.",
+    "answers": ["True", "False"],
+    "correctIndex": 0,
+    "explanation": "AI can help prepare the work, but responsibility for it never transfers away from the person who used it."
+  },
+  {
+    "id": "q3",
+    "category": "AI Security Basics",
+    "question": "Which of these would usually be Yellow information?",
+    "answers": ["Published website copy", "Employee payroll records", "Internal work orders and schedules", "API keys and passwords"],
+    "correctIndex": 2,
+    "explanation": "Operating procedures, schedules, and work orders are Yellow: AI can help prepare them, but a responsible person must review and authorize before they're used."
+  },
+  {
+    "id": "q4",
+    "category": "AI Security Basics",
+    "question": "Which of these should never be used to hire, fire, discipline, or set someone's pay?",
+    "answers": ["AI", "A manager", "HR", "The board"],
+    "correctIndex": 0,
+    "explanation": "People stay responsible for people decisions. AI can help draft or summarize, but it doesn't make the call."
+  },
+  {
+    "id": "q5",
+    "category": "AI Security Basics",
+    "question": "Before relying on AI output, the policy's 'final test' asks two questions. Which pair is it?",
+    "answers": ["Can we verify this? Can we recover from this?", "Is it free? Is it fast?", "Is it popular? Is it new?", "Does it look good? Is it fun?"],
+    "correctIndex": 0,
+    "explanation": "If you can't verify the facts, or can't undo the result if it's wrong, slow down and get the right review first."
+  },
+  {
+    "id": "q6",
+    "category": "Vendor Contracts",
+    "question": "What does DPA stand for in an AI vendor contract?",
+    "answers": ["Data Processing Agreement", "Digital Privacy Act", "Data Protection Authority", "Direct Provider Agreement"],
+    "correctIndex": 0,
+    "explanation": "A DPA is the legally binding contract that defines how a vendor processes your data, for what purpose, for how long, and what happens when the contract ends."
+  },
+  {
+    "id": "q7",
+    "category": "Vendor Contracts",
+    "question": "True or false: a vendor that refuses to sign a compliant DPA can still legally process your personal data, as long as they're careful.",
+    "answers": ["True", "False"],
+    "correctIndex": 1,
+    "explanation": "Under privacy laws, a vendor that refuses a compliant DPA cannot legally be used to process personal data — no exceptions for being careful."
+  },
+  {
+    "id": "q8",
+    "category": "Vendor Contracts",
+    "question": "What does a 'no-training clause' actually protect you from?",
+    "answers": [
+      "Your confidential data quietly becoming part of a shared AI model",
+      "Slow response times from the vendor",
+      "Having to train new employees",
+      "Losing access during an outage"
+    ],
+    "correctIndex": 0,
+    "explanation": "Without it, a vendor could feed your data into the model they're building — and your information could resurface in outputs to other customers, including competitors."
+  },
+  {
+    "id": "q9",
+    "category": "Vendor Contracts",
+    "question": "What is a subprocessor disclosure?",
+    "answers": [
+      "A list of every third party that may see, store, or process your data",
+      "A backup copy of your database",
+      "A vendor's marketing brochure",
+      "A firewall configuration file"
+    ],
+    "correctIndex": 0,
+    "explanation": "Your data rarely stays with just one vendor — it flows through hosting, backup, and analytics partners too. This is the map of who else touches it."
+  },
+  {
+    "id": "q10",
+    "category": "Vendor Contracts",
+    "question": "Why does data residency matter?",
+    "answers": [
+      "It determines which country's laws apply to your data",
+      "It decides what font the vendor's app uses",
+      "It sets employee vacation policy",
+      "It changes the vendor's logo colors"
+    ],
+    "correctIndex": 0,
+    "explanation": "Data stored in a given country is governed by that country's laws — including who can legally demand access to it."
+  },
+  {
+    "id": "q11",
+    "category": "Vendor Contracts",
+    "question": "What does MFA (multi-factor authentication) protect against?",
+    "answers": [
+      "A stolen or guessed password alone giving full account access",
+      "Slow internet connections",
+      "Weak Wi-Fi signal",
+      "Software bugs"
+    ],
+    "correctIndex": 0,
+    "explanation": "MFA means a password isn't enough by itself — an attacker also needs a second proof of identity, like a phone code or fingerprint."
+  },
+  {
+    "id": "q12",
+    "category": "Vendor Contracts",
+    "question": "What's the main purpose of audit logging?",
+    "answers": [
+      "Recording who accessed what data, when, and what they did with it",
+      "Making the AI model respond faster",
+      "Designing the company website",
+      "Automatically approving purchases"
+    ],
+    "correctIndex": 0,
+    "explanation": "Audit logs are the security-camera footage you need after something goes wrong — without them you're left guessing at scope and cause."
+  },
+  {
+    "id": "q13",
+    "category": "Vendor Contracts",
+    "question": "A vendor's breach notification clause typically requires them to tell you within how long?",
+    "answers": ["24 to 72 hours", "30 days", "6 months", "1 year"],
+    "correctIndex": 0,
+    "explanation": "Fast notification matters because your own legal deadlines to notify regulators and affected people start ticking the moment a breach happens."
+  },
+  {
+    "id": "q14",
+    "category": "Vendor Contracts",
+    "question": "When a vendor contract ends, what should 'exit and deletion' terms guarantee?",
+    "answers": [
+      "You get your data back and the vendor deletes and certifies deletion of their copies",
+      "The vendor keeps your data forever for backups",
+      "The vendor can sell your data to a third party",
+      "Nothing — data handling stops mattering once the contract ends"
+    ],
+    "correctIndex": 0,
+    "explanation": "Without this, your data can be orphaned in a vendor's systems indefinitely, long after you've stopped doing business with them."
+  },
+  {
+    "id": "q15",
+    "category": "AI Governance",
+    "question": "True or false: an AI agent should be granted full autonomy from day one to save time.",
+    "answers": ["True", "False"],
+    "correctIndex": 1,
+    "explanation": "Agents should climb an autonomy ladder — starting read-only, then draft-and-propose — earning more independence only after a track record of accuracy."
+  },
+  {
+    "id": "q16",
+    "category": "AI Governance",
+    "question": "According to the autonomy ladder, where should most AI agents live?",
+    "answers": [
+      "Stage 1 (read-only) or Stage 2 (draft and propose)",
+      "Stage 4 (full autonomy), immediately",
+      "No stage — agents should never take any action",
+      "Stage 3 for every agent, starting day one"
+    ],
+    "correctIndex": 0,
+    "explanation": "Full autonomy is rarely appropriate. Most agents should stay at read-only or draft-and-propose, with a human reviewing before anything is sent or executed."
+  },
+  {
+    "id": "q17",
+    "category": "AI Governance",
+    "question": "Which of these should an AI agent never do without explicit human authorization?",
+    "answers": [
+      "Send a payment or change banking details",
+      "Draft a summary of a public webpage",
+      "Suggest a few open calendar times",
+      "Translate a public FAQ"
+    ],
+    "correctIndex": 0,
+    "explanation": "Payments, banking changes, and similar high-consequence actions always require a human in the loop."
+  },
+  {
+    "id": "q18",
+    "category": "AI Governance",
+    "question": "What is the 'inheritance rule' for classifying AI output?",
+    "answers": [
+      "An AI output inherits the highest classification of any input that produced it",
+      "AI output is always classified Green",
+      "AI output inherits the classification of whichever input came in last",
+      "Classification resets to Yellow after every use"
+    ],
+    "correctIndex": 0,
+    "explanation": "If a Green marketing draft pulls in Yellow pricing data, the output is Yellow. This stops sensitive data from being 'laundered' into a lower category."
+  },
+  {
+    "id": "q19",
+    "category": "AI Governance",
+    "question": "In vendor tiering, what is a 'Tier 3' AI tool?",
+    "answers": [
+      "A personal or free consumer tool — not approved for company data",
+      "A fully vetted enterprise platform with a signed DPA",
+      "A government-only tool",
+      "An open-source tool with built-in audit logs"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tier 3 covers things like public chatbots and browser extensions — fine for general learning, never for company information."
+  },
+  {
+    "id": "q20",
+    "category": "AI Governance",
+    "question": "Which of these should leaders never share with an AI vendor without specific approval?",
+    "answers": [
+      "Employee SSNs and medical information",
+      "A public press release",
+      "A generic training outline",
+      "Content from the public website"
+    ],
+    "correctIndex": 0,
+    "explanation": "HR and medical data is Red information — it stays out of AI tools unless the vendor, tool, and exact use case have been specifically approved."
+  }
+]
