@@ -9,6 +9,9 @@
   let resetTimer = null;
   let attempts = [];
   let lastCategory = null; // null = mixed round pulling from every category
+  // Excluded from "All Categories" mixed rounds only; still playable by picking
+  // its own category button directly.
+  const ALL_CATEGORIES_EXCLUDED = new Set(["AI & Development"]);
 
   const screens = {
     attract: document.getElementById("screen-attract"),
@@ -89,7 +92,9 @@
   function startRound(category) {
     clearTimeout(resetTimer);
     lastCategory = category;
-    const pool = category ? BANK.filter((q) => q.category === category) : BANK;
+    const pool = category
+      ? BANK.filter((q) => q.category === category)
+      : BANK.filter((q) => !ALL_CATEGORIES_EXCLUDED.has(q.category));
     const count = Math.min(CONFIG.questionsPerRound, pool.length);
     round = shuffle(pool).slice(0, count).map(prepareQuestion);
     currentIndex = 0;
