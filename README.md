@@ -18,6 +18,10 @@ reachable at (localhost, and each LAN address if bound to `0.0.0.0`).
 Open the printed network URL on the touch screen. Open it full-screen (most
 browsers: F11, or launch Chrome with `--kiosk`) so it fills a 32" display.
 
+At the end of a round, the results screen offers "Review Answers" — a
+scrollable recap of every question in that round, showing what was picked
+against the correct answer, before returning to the start screen.
+
 The live results dashboard is at `/stats.html` on that same address — open it
 on a second device or a second browser tab to watch picks come in during the
 event.

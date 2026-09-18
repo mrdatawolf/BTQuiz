@@ -7,12 +7,14 @@
   let currentIndex = 0;
   let score = 0;
   let resetTimer = null;
+  let attempts = [];
 
   const screens = {
     attract: document.getElementById("screen-attract"),
     question: document.getElementById("screen-question"),
     feedback: document.getElementById("screen-feedback"),
-    results: document.getElementById("screen-results")
+    results: document.getElementById("screen-results"),
+    review: document.getElementById("screen-review")
   };
 
   function show(name) {
@@ -57,6 +59,7 @@
     round = shuffle(BANK).slice(0, count).map(prepareQuestion);
     currentIndex = 0;
     score = 0;
+    attempts = [];
     renderProgress();
     renderQuestion();
     show("question");
@@ -93,6 +96,16 @@
     const q = round[currentIndex];
     const correct = choiceIndex === q.correctIndex;
     if (correct) score++;
+
+    attempts.push({
+      category: q.category,
+      question: q.question,
+      answers: q.answers,
+      correctIndex: q.correctIndex,
+      pickedIndex: choiceIndex,
+      correct,
+      explanation: q.explanation
+    });
 
     const buttons = Array.from(document.querySelectorAll(".answer-btn"));
     buttons.forEach((b, i) => {
@@ -154,11 +167,53 @@
     document.getElementById("results-headline").textContent = headline;
 
     show("results");
-    startAutoReset();
+    startAutoReset("results-auto-reset-fill");
   }
 
-  function startAutoReset() {
-    const fill = document.getElementById("auto-reset-fill");
+  function showReview() {
+    document.getElementById("review-score").textContent = score;
+    document.getElementById("review-total").textContent = round.length;
+
+    const list = document.getElementById("review-list");
+    list.innerHTML = "";
+    attempts.forEach((a, i) => {
+      const card = document.createElement("div");
+      card.className = "review-card" + (a.correct ? " is-correct" : " is-wrong");
+
+      const rows = a.answers.map((text, idx) => {
+        const isPicked = idx === a.pickedIndex;
+        const isCorrect = idx === a.correctIndex;
+        let cls = "review-answer";
+        let mark = "";
+        if (isCorrect) { cls += " correct"; mark = "✓"; }
+        else if (isPicked) { cls += " wrong"; mark = "✕"; }
+        return `<div class="${cls}">${mark ? `<span class="mark">${mark}</span>` : ""}<span>${escapeHtml(text)}</span></div>`;
+      }).join("");
+
+      card.innerHTML = `
+        <div class="review-card-header">
+          <span class="review-index">Q${i + 1}</span>
+          <span class="review-category">${escapeHtml(a.category)}</span>
+        </div>
+        <h3>${escapeHtml(a.question)}</h3>
+        <div class="review-answers">${rows}</div>
+        <p class="review-explanation">${escapeHtml(a.explanation)}</p>
+      `;
+      list.appendChild(card);
+    });
+
+    show("review");
+    startAutoReset("review-auto-reset-fill");
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function startAutoReset(fillId) {
+    const fill = document.getElementById(fillId);
     const seconds = CONFIG.autoResetSeconds;
     fill.style.transition = "none";
     fill.style.width = "100%";
@@ -178,6 +233,8 @@
   document.getElementById("start-btn").addEventListener("click", startRound);
   document.getElementById("again-btn").addEventListener("click", startRound);
   document.getElementById("continue-btn").addEventListener("click", nextStep);
+  document.getElementById("review-btn").addEventListener("click", showReview);
+  document.getElementById("review-done-btn").addEventListener("click", returnToAttract);
 
   loadData().then(() => show("attract"));
 })();

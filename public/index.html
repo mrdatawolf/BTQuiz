@@ -49,9 +49,25 @@
         <div class="results-badge" id="results-emoji">🎉</div>
         <h2 id="results-headline">Nice work!</h2>
         <p class="results-score"><span id="results-score">0</span> / <span id="results-total">0</span> correct</p>
-        <button class="tap-target" id="again-btn">Play Again</button>
-        <div class="auto-reset-bar"><div class="auto-reset-fill" id="auto-reset-fill"></div></div>
+        <div class="results-actions">
+          <button class="tap-target secondary" id="review-btn">Review Answers</button>
+          <button class="tap-target" id="again-btn">Play Again</button>
+        </div>
+        <div class="auto-reset-bar"><div class="auto-reset-fill" id="results-auto-reset-fill"></div></div>
         <p class="auto-reset-note">Returning to start automatically&hellip;</p>
+      </div>
+    </section>
+
+    <!-- Review screen: recap of every question in the round, shown at the end -->
+    <section id="screen-review" class="screen">
+      <header class="review-header">
+        <h2>Round Review</h2>
+        <span class="review-score"><span id="review-score">0</span> / <span id="review-total">0</span> correct</span>
+      </header>
+      <div class="review-list" id="review-list"></div>
+      <div class="review-footer">
+        <button class="tap-target" id="review-done-btn">Tap to Continue</button>
+        <div class="auto-reset-bar"><div class="auto-reset-fill" id="review-auto-reset-fill"></div></div>
       </div>
     </section>
 
