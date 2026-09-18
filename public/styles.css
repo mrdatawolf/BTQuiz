@@ -129,6 +129,8 @@ h1, h2 { font-family: 'Poppins', system-ui, sans-serif; margin: 0; }
 }
 
 .category-btn-all {
+  flex-basis: 100%;
+  margin-bottom: clamp(4px, 1vh, 12px);
   font-weight: 800;
 }
 

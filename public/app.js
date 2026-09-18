@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  let CONFIG = { title: "AI Policy IQ", subtitle: "Choose a category to test your knowledge", questionsPerRound: 5, autoResetSeconds: 25 };
+  let CONFIG = { title: "General IT Questions", subtitle: "Choose a category to test your knowledge", questionsPerRound: 5, autoResetSeconds: 25 };
   let BANK = [];
   let round = [];
   let currentIndex = 0;
@@ -60,13 +60,20 @@
     renderCategoryButtons();
   }
 
-  // One button per category found in the question bank, in first-seen order,
-  // plus a final "All Categories" button that pulls a mixed round from every
-  // category. Rebuilt whenever the bank loads since categories live in data.
+  // "All Categories" comes first, alone on its own row, so it reads as the
+  // default/recommended choice. One button per category found in the
+  // question bank follows, in first-seen order. Rebuilt whenever the bank
+  // loads since categories live in data.
   function renderCategoryButtons() {
     const categories = [...new Set(BANK.map((q) => q.category))];
     const grid = document.getElementById("category-grid");
     grid.innerHTML = "";
+
+    const allBtn = document.createElement("button");
+    allBtn.className = "tap-target pulse category-btn category-btn-all";
+    allBtn.textContent = "All Categories";
+    allBtn.addEventListener("click", () => startRound(null));
+    grid.appendChild(allBtn);
 
     categories.forEach((cat) => {
       const btn = document.createElement("button");
@@ -75,12 +82,6 @@
       btn.addEventListener("click", () => startRound(cat));
       grid.appendChild(btn);
     });
-
-    const allBtn = document.createElement("button");
-    allBtn.className = "tap-target pulse category-btn category-btn-all";
-    allBtn.textContent = "All Categories";
-    allBtn.addEventListener("click", () => startRound(null));
-    grid.appendChild(allBtn);
   }
 
   // category === null pulls a mixed round from the whole bank; otherwise the
