@@ -33,6 +33,9 @@
   }
 
   // Shuffle answer order per-question so the correct slot isn't always the same position.
+  // `order[shuffledPosition] = originalIndex` — kept so answers can be logged
+  // by their stable original index instead of the on-screen position, which
+  // changes every play-through and would make server-side aggregation meaningless.
   function prepareQuestion(q) {
     const order = shuffle(q.answers.map((_, i) => i));
     return {
@@ -41,7 +44,8 @@
       question: q.question,
       explanation: q.explanation,
       answers: order.map((i) => q.answers[i]),
-      correctIndex: order.indexOf(q.correctIndex)
+      correctIndex: order.indexOf(q.correctIndex),
+      order
     };
   }
 
@@ -98,12 +102,16 @@
     const correct = choiceIndex === q.correctIndex;
     if (correct) score++;
 
+    const originalIndex = q.order[choiceIndex];
+
     attempts.push({
+      questionId: q.id,
       category: q.category,
       question: q.question,
       answers: q.answers,
       correctIndex: q.correctIndex,
       pickedIndex: choiceIndex,
+      originalIndex,
       correct,
       explanation: q.explanation
     });
@@ -115,7 +123,7 @@
       else if (i === choiceIndex) b.classList.add("reveal-wrong");
     });
 
-    logResponse(q.id, choiceIndex, correct);
+    logResponse(q.id, originalIndex, correct);
 
     setTimeout(() => showFeedback(correct, q.explanation), 450);
   }
@@ -171,9 +179,27 @@
     startAutoReset("results-auto-reset-fill");
   }
 
-  function showReview() {
+  // Minimum recorded picks for a question before we show a hit-rate percentage —
+  // below this a "68%" figure would really just mean "you and one other person".
+  const MIN_SAMPLE_FOR_HIT_RATE = 3;
+
+  async function fetchHitRates() {
+    const byQuestionId = {};
+    try {
+      const res = await fetch("/api/stats");
+      const data = await res.json();
+      data.questions.forEach((q) => { byQuestionId[q.id] = q; });
+    } catch {
+      // Network hiccup — review still renders, just without the hit-rate line.
+    }
+    return byQuestionId;
+  }
+
+  async function showReview() {
     document.getElementById("review-score").textContent = score;
     document.getElementById("review-total").textContent = round.length;
+
+    const hitRates = await fetchHitRates();
 
     const list = document.getElementById("review-list");
     list.innerHTML = "";
@@ -191,6 +217,15 @@
         return `<div class="${cls}">${mark ? `<span class="mark">${mark}</span>` : ""}<span>${escapeHtml(text)}</span></div>`;
       }).join("");
 
+      const bucket = hitRates[a.questionId];
+      let statHtml;
+      if (bucket && bucket.total >= MIN_SAMPLE_FOR_HIT_RATE) {
+        const pct = Math.round((bucket.counts[a.originalIndex] / bucket.total) * 100);
+        statHtml = `<p class="review-stat"><strong>${pct}%</strong> of quiz takers so far picked the same answer as you.</p>`;
+      } else {
+        statHtml = `<p class="review-stat review-stat-muted">Not enough plays yet to compare.</p>`;
+      }
+
       card.innerHTML = `
         <div class="review-card-header">
           <span class="review-index">Q${i + 1}</span>
@@ -198,6 +233,7 @@
         </div>
         <h3>${escapeHtml(a.question)}</h3>
         <div class="review-answers">${rows}</div>
+        ${statHtml}
         <p class="review-explanation">${escapeHtml(a.explanation)}</p>
       `;
       list.appendChild(card);

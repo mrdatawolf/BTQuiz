@@ -1,4 +1,5 @@
 node_modules/
 data/responses.jsonl
+data/hit-rates.json
 Examples/
 .env

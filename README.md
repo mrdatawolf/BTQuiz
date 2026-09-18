@@ -20,7 +20,8 @@ browsers: F11, or launch Chrome with `--kiosk`) so it fills a 32" display.
 
 At the end of a round, the results screen offers "Review Answers" — a
 scrollable recap of every question in that round, showing what was picked
-against the correct answer, before returning to the start screen.
+against the correct answer, plus what percentage of everyone who's played so
+far picked the same answer, before returning to the start screen.
 
 A small "Reset" button sits in the bottom-right corner during any round (it's
 hidden on the start screen, since that's already the reset state). It's for
@@ -107,12 +108,22 @@ Every answer picked is appended to `data/responses.jsonl`, one JSON line per
 pick:
 
 ```json
-{"questionId":"q6","choiceIndex":0,"correct":true,"ts":"2026-09-17T18:04:21.310Z"}
+{"questionId":"q6","choiceIndex":2,"correct":true,"ts":"2026-09-17T18:04:21.310Z"}
 ```
 
-No visitor names, device info, or IP addresses are recorded — just which question,
-which choice, whether it was correct, and a timestamp. `stats.html` reads this
-file and aggregates it into a live chart/table view.
+`choiceIndex` is the answer's fixed position in `questions.json`, not its
+shuffled on-screen position (answer order is randomized per play, so the
+server always logs by the stable original index).
 
-To reset the data (e.g. before a new event day), stop the server and delete or
-empty `data/responses.jsonl`.
+No visitor names, device info, or IP addresses are recorded — just which question,
+which choice, whether it was correct, and a timestamp.
+
+The server also keeps a running tally of pick counts per question in
+**`data/hit-rates.json`** — the same numbers, aggregated instead of logged
+per-event. It's what powers both `stats.html` and the "N% of quiz takers
+picked the same answer as you" line on the review screen, and it's rebuilt
+from scratch (all zeros) if the file is ever missing.
+
+To reset the data (e.g. before a new event day), stop the server and delete
+`data/responses.jsonl` and `data/hit-rates.json` (or empty the former and
+delete the latter — it's regenerated automatically on next start).

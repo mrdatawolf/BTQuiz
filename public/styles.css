@@ -426,6 +426,16 @@ h1, h2 { font-family: 'Poppins', system-ui, sans-serif; margin: 0; }
   background: rgba(226, 99, 92, 0.12);
 }
 
+.review-stat {
+  font-size: clamp(13px, 1.3vw, 16px);
+  color: var(--text-secondary);
+  margin: 0 0 10px;
+}
+
+.review-stat strong { color: var(--accent); font-weight: 700; }
+
+.review-stat.review-stat-muted { color: var(--text-muted); font-style: italic; }
+
 .review-explanation {
   color: var(--text-secondary);
   font-size: clamp(13px, 1.2vw, 16px);
