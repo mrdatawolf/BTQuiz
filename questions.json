@@ -2,216 +2,329 @@
   {
     "id": "q1",
     "category": "AI Security Basics",
-    "question": "Under the Green / Yellow / Red rule, which color means STOP — don't enter it into an AI tool without specific approval?",
-    "answers": ["Green", "Yellow", "Red", "Purple"],
+    "question": "You are using a public AI chatbot to summarize a project. Which information should you avoid pasting into the tool?",
+    "answers": [
+      "A published company blog post",
+      "A public product description",
+      "A customer list with email addresses and purchase history",
+      "A general definition of a business term"
+    ],
     "correctIndex": 2,
-    "explanation": "Red covers sensitive, private, regulated, financial, personnel, and security information. Stop and get it specifically approved first."
+    "explanation": "Customer lists, email addresses, and purchase histories are confidential and may contain personal data. Use approved tools and follow company policy before sharing such information with AI."
   },
   {
     "id": "q2",
     "category": "AI Security Basics",
-    "question": "True or false: you own the work you submit, send, approve, or act on — not the AI.",
-    "answers": ["True", "False"],
-    "correctIndex": 0,
-    "explanation": "AI can help prepare the work, but responsibility for it never transfers away from the person who used it."
+    "question": "An AI assistant creates a summary of a confidential meeting. Before sharing that summary outside your company, you should:",
+    "answers": [
+      "Send it immediately because AI made it",
+      "Review it for accuracy and remove confidential details",
+      "Add more customer data so it is more complete",
+      "Assume the recipient already knows the information"
+    ],
+    "correctIndex": 1,
+    "explanation": "AI-generated content still needs human review. Check that it is accurate and that it does not disclose confidential information to people who are not authorized to receive it."
   },
   {
     "id": "q3",
     "category": "AI Security Basics",
-    "question": "Which of these would usually be Yellow information?",
-    "answers": ["Published website copy", "Employee payroll records", "Internal work orders and schedules", "API keys and passwords"],
-    "correctIndex": 2,
-    "explanation": "Operating procedures, schedules, and work orders are Yellow: AI can help prepare them, but a responsible person must review and authorize before they're used."
+    "question": "Which item is most likely considered sensitive personal information?",
+    "answers": [
+      "A public company address",
+      "An employee's Social Security number",
+      "A public job posting",
+      "A published annual report"
+    ],
+    "correctIndex": 1,
+    "explanation": "A Social Security number is highly sensitive personal information and should never be entered into an unapproved AI tool."
   },
   {
     "id": "q4",
     "category": "AI Security Basics",
-    "question": "Which of these should never be used to hire, fire, discipline, or set someone's pay?",
-    "answers": ["AI", "A manager", "HR", "The board"],
-    "correctIndex": 0,
-    "explanation": "People stay responsible for people decisions. AI can help draft or summarize, but it doesn't make the call."
+    "question": "You need help drafting a customer email with AI. Which is the safest information to provide?",
+    "answers": [
+      "A customer's full account history",
+      "The customer's payment card information",
+      "A made-up example with no identifying details",
+      "The customer's login password"
+    ],
+    "correctIndex": 2,
+    "explanation": "A fictional, non-identifying example can help you draft a message without exposing customer data. Do not include account histories, payment information, or passwords."
   },
   {
     "id": "q5",
     "category": "AI Security Basics",
-    "question": "Before relying on AI output, the policy's 'final test' asks two questions. Which pair is it?",
-    "answers": ["Can we verify this? Can we recover from this?", "Is it free? Is it fast?", "Is it popular? Is it new?", "Does it look good? Is it fun?"],
-    "correctIndex": 0,
-    "explanation": "If you can't verify the facts, or can't undo the result if it's wrong, slow down and get the right review first."
+    "question": "AI gives you a statistic for a sales presentation. What should you do before including it?",
+    "answers": [
+      "Use it because it sounds specific",
+      "Check the statistic against a reliable source",
+      "Ask the AI to make the number larger",
+      "Remove the source so the slide looks cleaner"
+    ],
+    "correctIndex": 1,
+    "explanation": "AI can provide inaccurate or invented facts. Verify important statistics with reliable sources before using them in a presentation or business decision."
   },
   {
     "id": "q6",
-    "category": "Vendor Contracts",
-    "question": "What does DPA stand for in an AI vendor contract?",
-    "answers": ["Data Processing Agreement", "Digital Privacy Act", "Data Protection Authority", "Direct Provider Agreement"],
-    "correctIndex": 0,
-    "explanation": "A DPA is the legally binding contract that defines how a vendor processes your data, for what purpose, for how long, and what happens when the contract ends."
+    "category": "AI Security Basics",
+    "question": "Which is the best example of confidential company information?",
+    "answers": [
+      "A company's public website URL",
+      "A product feature that has not been announced",
+      "A news article about the industry",
+      "A publicly available social media post"
+    ],
+    "correctIndex": 1,
+    "explanation": "Unannounced product features are nonpublic business information. Sharing them with an unapproved AI tool could expose company plans."
   },
   {
     "id": "q7",
-    "category": "Vendor Contracts",
-    "question": "True or false: a vendor that refuses to sign a compliant DPA can still legally process your personal data, as long as they're careful.",
-    "answers": ["True", "False"],
+    "category": "AI Security Basics",
+    "question": "An AI tool writes a customer-facing response that promises a refund. What should happen next?",
+    "answers": [
+      "Send it automatically",
+      "Have an authorized employee review it against company policy",
+      "Ask the AI to send the refund",
+      "Forward it to every customer"
+    ],
     "correctIndex": 1,
-    "explanation": "Under privacy laws, a vendor that refuses a compliant DPA cannot legally be used to process personal data — no exceptions for being careful."
+    "explanation": "AI should not make commitments on behalf of the company without human oversight. An authorized employee should verify that the response follows refund and customer-service policies."
   },
   {
     "id": "q8",
-    "category": "Vendor Contracts",
-    "question": "What does a 'no-training clause' actually protect you from?",
+    "category": "AI Security Basics",
+    "question": "Which detail should generally not be entered into an unapproved AI tool?",
     "answers": [
-      "Your confidential data quietly becoming part of a shared AI model",
-      "Slow response times from the vendor",
-      "Having to train new employees",
-      "Losing access during an outage"
+      "A publicly available news headline",
+      "A generic sample agenda",
+      "A customer's medical information",
+      "A public industry trend"
     ],
-    "correctIndex": 0,
-    "explanation": "Without it, a vendor could feed your data into the model they're building — and your information could resurface in outputs to other customers, including competitors."
+    "correctIndex": 2,
+    "explanation": "Medical information is sensitive personal data. It requires careful protection and should be handled only in approved systems according to company policy and applicable requirements."
   },
   {
     "id": "q9",
-    "category": "Vendor Contracts",
-    "question": "What is a subprocessor disclosure?",
+    "category": "AI Security Basics",
+    "question": "AI produces a summary of a contract. Why should a person read the original contract too?",
     "answers": [
-      "A list of every third party that may see, store, or process your data",
-      "A backup copy of your database",
-      "A vendor's marketing brochure",
-      "A firewall configuration file"
+      "AI summaries can miss, misunderstand, or invent important terms",
+      "Contracts are always written incorrectly",
+      "AI cannot summarize more than one page",
+      "The original contract is less important than the summary"
     ],
     "correctIndex": 0,
-    "explanation": "Your data rarely stays with just one vendor — it flows through hosting, backup, and analytics partners too. This is the map of who else touches it."
+    "explanation": "AI can omit details or misinterpret legal language. The original contract remains the authoritative document and should be reviewed by the appropriate people."
   },
   {
     "id": "q10",
-    "category": "Vendor Contracts",
-    "question": "Why does data residency matter?",
+    "category": "AI Security Basics",
+    "question": "You are asked to use AI to analyze employee feedback. What is the safest first step?",
     "answers": [
-      "It determines which country's laws apply to your data",
-      "It decides what font the vendor's app uses",
-      "It sets employee vacation policy",
-      "It changes the vendor's logo colors"
+      "Upload every raw response, including names and contact details",
+      "Remove or reduce identifying information where possible",
+      "Post the feedback publicly for transparency",
+      "Share employee passwords so the AI can verify identities"
     ],
-    "correctIndex": 0,
-    "explanation": "Data stored in a given country is governed by that country's laws — including who can legally demand access to it."
+    "correctIndex": 1,
+    "explanation": "Reducing identifying information helps protect employee privacy. Only use approved tools and share the minimum data needed for the task."
   },
   {
     "id": "q11",
-    "category": "Vendor Contracts",
-    "question": "What does MFA (multi-factor authentication) protect against?",
+    "category": "AI Security Basics",
+    "question": "Which item is least appropriate to put into a public AI chatbot?",
     "answers": [
-      "A stolen or guessed password alone giving full account access",
-      "Slow internet connections",
-      "Weak Wi-Fi signal",
-      "Software bugs"
+      "A request for grammar help on a public announcement",
+      "A request for ideas for a team-building activity",
+      "A spreadsheet containing employees' salaries",
+      "A request for a generic meeting agenda"
     ],
-    "correctIndex": 0,
-    "explanation": "MFA means a password isn't enough by itself — an attacker also needs a second proof of identity, like a phone code or fingerprint."
+    "correctIndex": 2,
+    "explanation": "Employee salary data is private and sensitive. It should not be entered into a public or unapproved AI service."
   },
   {
     "id": "q12",
-    "category": "Vendor Contracts",
-    "question": "What's the main purpose of audit logging?",
+    "category": "AI Security Basics",
+    "question": "An AI assistant says a competitor has launched a new product. What should you do?",
     "answers": [
-      "Recording who accessed what data, when, and what they did with it",
-      "Making the AI model respond faster",
-      "Designing the company website",
-      "Automatically approving purchases"
+      "Announce it internally as fact",
+      "Confirm it through trustworthy sources before acting on it",
+      "Assume the AI has inside information",
+      "Contact customers with the claim immediately"
     ],
-    "correctIndex": 0,
-    "explanation": "Audit logs are the security-camera footage you need after something goes wrong — without them you're left guessing at scope and cause."
+    "correctIndex": 1,
+    "explanation": "AI output can be outdated or incorrect. Confirm business-relevant claims through reliable sources before sharing or making decisions based on them."
   },
   {
     "id": "q13",
-    "category": "Vendor Contracts",
-    "question": "A vendor's breach notification clause typically requires them to tell you within how long?",
-    "answers": ["24 to 72 hours", "30 days", "6 months", "1 year"],
-    "correctIndex": 0,
-    "explanation": "Fast notification matters because your own legal deadlines to notify regulators and affected people start ticking the moment a breach happens."
+    "category": "AI Security Basics",
+    "question": "A colleague asks you to paste a client proposal into a free AI tool just to clean up the wording. What is the best response?",
+    "answers": [
+      "Do it, because editing is low risk",
+      "Do it only after checking whether the tool is approved for confidential data",
+      "Paste only the client's passwords",
+      "Share the proposal on social media first"
+    ],
+    "correctIndex": 1,
+    "explanation": "A client proposal may contain confidential business or customer information. Confirm that the AI tool is approved for that type of data before using it."
   },
   {
     "id": "q14",
-    "category": "Vendor Contracts",
-    "question": "When a vendor contract ends, what should 'exit and deletion' terms guarantee?",
+    "category": "AI Security Basics",
+    "question": "Which is an example of information that may be commercially sensitive?",
     "answers": [
-      "You get your data back and the vendor deletes and certifies deletion of their copies",
-      "The vendor keeps your data forever for backups",
-      "The vendor can sell your data to a third party",
-      "Nothing — data handling stops mattering once the contract ends"
+      "A company's public mission statement",
+      "A planned acquisition that has not been announced",
+      "A public conference schedule",
+      "A public product brochure"
     ],
-    "correctIndex": 0,
-    "explanation": "Without this, your data can be orphaned in a vendor's systems indefinitely, long after you've stopped doing business with them."
+    "correctIndex": 1,
+    "explanation": "An unannounced acquisition is highly sensitive business information. Disclosing it could affect negotiations, the company, and other parties."
   },
   {
     "id": "q15",
-    "category": "AI Governance",
-    "question": "True or false: an AI agent should be granted full autonomy from day one to save time.",
-    "answers": ["True", "False"],
-    "correctIndex": 1,
-    "explanation": "Agents should climb an autonomy ladder — starting read-only, then draft-and-propose — earning more independence only after a track record of accuracy."
+    "category": "AI Security Basics",
+    "question": "AI generates an answer for a customer about pricing. Why should it be reviewed before sending?",
+    "answers": [
+      "AI might provide outdated, incorrect, or unauthorized pricing",
+      "AI always charges too much",
+      "Customers do not care about pricing",
+      "Reviewing it makes the AI faster"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pricing information needs to be accurate and approved. A human should confirm that any AI-generated price or offer follows current company policy."
   },
   {
     "id": "q16",
-    "category": "AI Governance",
-    "question": "According to the autonomy ladder, where should most AI agents live?",
+    "category": "AI Security Basics",
+    "question": "You are using AI to help write a report. Which practice is safest?",
     "answers": [
-      "Stage 1 (read-only) or Stage 2 (draft and propose)",
-      "Stage 4 (full autonomy), immediately",
-      "No stage — agents should never take any action",
-      "Stage 3 for every agent, starting day one"
+      "Treat every AI statement as a verified fact",
+      "Check important facts, figures, quotations, and sources yourself",
+      "Delete any sources the AI provides",
+      "Use AI output without reading it"
     ],
-    "correctIndex": 0,
-    "explanation": "Full autonomy is rarely appropriate. Most agents should stay at read-only or draft-and-propose, with a human reviewing before anything is sent or executed."
+    "correctIndex": 1,
+    "explanation": "Human fact-checking is essential. Review important claims, numbers, quotations, and citations before including them in a report."
   },
   {
     "id": "q17",
-    "category": "AI Governance",
-    "question": "Which of these should an AI agent never do without explicit human authorization?",
+    "category": "AI Security Basics",
+    "question": "Which of the following is most likely private customer data?",
     "answers": [
-      "Send a payment or change banking details",
-      "Draft a summary of a public webpage",
-      "Suggest a few open calendar times",
-      "Translate a public FAQ"
+      "A company's public phone number",
+      "A customer's account number and support history",
+      "A public advertisement",
+      "A general list of product features"
     ],
-    "correctIndex": 0,
-    "explanation": "Payments, banking changes, and similar high-consequence actions always require a human in the loop."
+    "correctIndex": 1,
+    "explanation": "Account numbers and support history can identify a customer and reveal private details. Handle this information only in approved systems."
   },
   {
     "id": "q18",
-    "category": "AI Governance",
-    "question": "What is the 'inheritance rule' for classifying AI output?",
+    "category": "AI Security Basics",
+    "question": "AI creates a draft that names a customer who was not part of your project. What should you do?",
     "answers": [
-      "An AI output inherits the highest classification of any input that produced it",
-      "AI output is always classified Green",
-      "AI output inherits the classification of whichever input came in last",
-      "Classification resets to Yellow after every use"
+      "Keep the name because it makes the draft sound realistic",
+      "Remove the incorrect information and investigate the source of the error",
+      "Send the draft before anyone notices",
+      "Add more customer names to balance it out"
     ],
-    "correctIndex": 0,
-    "explanation": "If a Green marketing draft pulls in Yellow pricing data, the output is Yellow. This stops sensitive data from being 'laundered' into a lower category."
+    "correctIndex": 1,
+    "explanation": "Remove incorrect or unnecessary customer information immediately. The error may be a hallucination or a sign that the wrong information was used, so it should be checked before the draft is shared."
   },
   {
     "id": "q19",
-    "category": "AI Governance",
-    "question": "In vendor tiering, what is a 'Tier 3' AI tool?",
+    "category": "AI Security Basics",
+    "question": "Why is it risky to rely on AI-generated content without review?",
     "answers": [
-      "A personal or free consumer tool — not approved for company data",
-      "A fully vetted enterprise platform with a signed DPA",
-      "A government-only tool",
-      "An open-source tool with built-in audit logs"
+      "AI output can be inaccurate, biased, incomplete, or made up",
+      "AI only writes in technical language",
+      "AI cannot produce any useful content",
+      "AI always repeats the same sentence"
     ],
     "correctIndex": 0,
-    "explanation": "Tier 3 covers things like public chatbots and browser extensions — fine for general learning, never for company information."
+    "explanation": "AI can sound confident even when its output is wrong. Human review helps catch errors, bias, missing context, and unsupported claims."
   },
   {
     "id": "q20",
-    "category": "AI Governance",
-    "question": "Which of these should leaders never share with an AI vendor without specific approval?",
+    "category": "AI Security Basics",
+    "question": "What is the best rule for using AI with business information?",
     "answers": [
-      "Employee SSNs and medical information",
-      "A public press release",
-      "A generic training outline",
-      "Content from the public website"
+      "Share all available information to get the best result",
+      "Use only public information in every situation",
+      "Use approved tools, protect sensitive data, and verify important output",
+      "Let AI make final decisions without human involvement"
+    ],
+    "correctIndex": 2,
+    "explanation": "Safe AI use combines approved tools, careful handling of sensitive information, and human review of important outputs and decisions."
+  },
+  {
+    "id": "q21",
+    "category": "Backups",
+    "question": "A business wants to test whether its backups actually work. Which of the following is the most effective form of recovery testing?",
+    "answers": [
+      "Checking that the backup logs show 'completed successfully'",
+      "Restoring a random selection of files to a test location and verifying their contents",
+      "Monitoring backup storage usage to see if it is growing over time",
+      "Asking users whether they have had any issues with missing files"
+    ],
+    "correctIndex": 1,
+    "explanation": "Restoring a random selection of files to a test location and verifying their contents is the most effective option because it validates the end‑to‑end restore path."
+  },
+ 
+{
+    "id": "q22",
+    "category": "Backups",
+    "question": "Which practice best improves resilience against ransomware that encrypts production data?",
+    "answers": [
+      "Relying solely on real-time antivirus scanning to block ransomware",
+      "Disabling all file sharing on the network",
+      "Keeping a single daily backup on a network share that is always mounted",
+      "Using immutable or write-once backups that cannot be altered after creation"
+    ],
+    "correctIndex": 3,
+    "explanation": "When backups are immutable, the data from a specific backup point is locked and cannot be changed or deleted until its retention period expires."
+  },
+ 
+{
+    "id": "q23",
+    "category": "Backups",
+    "question": "A company follows the '3-2-1' backup rule. What does this typically mean in practice?",
+    "answers": [
+      "Three versions of each file, stored on a single on-premises backup appliance",
+      "Three full backups per day, two incremental backups per week, one monthly archive",
+      "Three copies of data, on two different media types, with at least one copy offsite",
+      "Three backup administrators, two separate data centers, one written recovery plan"
+    ],
+    "correctIndex": 2,
+    "explanation": "This geographic and infrastructure diversity enhances resilience: a failure or compromise in one environment is less likely to simultaneously destroy all backup copies."
+  },
+ 
+{
+    "id": "q24",
+    "category": "Backups",
+    "question": "A company keeps backups both on-premises and in the cloud. Which statement best captures the benefit of this hybrid backup approach?",
+    "answers": [
+      "It provides geographic and infrastructure diversity, improving resilience",
+      "It allows the company to avoid any need for backup testing",
+      "It means the company no longer needs to monitor backup jobs",
+      "It guarantees that backups will never fail"
     ],
     "correctIndex": 0,
-    "explanation": "HR and medical data is Red information — it stays out of AI tools unless the vendor, tool, and exact use case have been specifically approved."
+    "explanation": "Using both on-premises and cloud backups spreads risk across different physical locations and technology stacks."
+  },
+{
+    "id": "q25",
+    "category": "Backups",
+    "question": "A business stores all files on one server with no backup. Which risk is the MOST immediate reason backups matter?",
+    "answers": [
+      "Extra software licensing costs for backup tools",
+      "Losing access to data after a hardware failure or accidental deletion",
+      "Slower performance when many users access files at once",
+      "Needing more storage space for future growth"
+    ],
+    "correctIndex": 1,
+    "explanation": "This option highlights the primary and most urgent risk of having no backup: if the single server fails, is corrupted, or someone accidentally deletes important files, the business may permanently lose data."
   }
 ]

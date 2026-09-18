@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Touch-screen event quiz for AI policy & security awareness",
   "main": "server.js",
+  "license": "MIT",
   "scripts": {
     "start": "node --env-file-if-exists=.env server.js"
   },

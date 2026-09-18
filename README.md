@@ -127,3 +127,7 @@ from scratch (all zeros) if the file is ever missing.
 To reset the data (e.g. before a new event day), stop the server and delete
 `data/responses.jsonl` and `data/hit-rates.json` (or empty the former and
 delete the latter — it's regenerated automatically on next start).
+
+## License
+
+MIT — see [LICENSE](LICENSE).
