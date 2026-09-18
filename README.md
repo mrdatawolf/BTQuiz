@@ -22,6 +22,12 @@ At the end of a round, the results screen offers "Review Answers" — a
 scrollable recap of every question in that round, showing what was picked
 against the correct answer, before returning to the start screen.
 
+A small "Reset" button sits in the bottom-right corner during any round (it's
+hidden on the start screen, since that's already the reset state). It's for
+staff — e.g. a visitor walks away mid-quiz — and asks for confirmation before
+clearing the round and returning to the start screen, so a stray tap can't
+wipe someone's progress.
+
 The live results dashboard is at `/stats.html` on that same address — open it
 on a second device or a second browser tab to watch picks come in during the
 event.

@@ -20,6 +20,7 @@
   function show(name) {
     Object.values(screens).forEach((s) => s.classList.remove("active"));
     screens[name].classList.add("active");
+    document.getElementById("reset-btn").hidden = name === "attract";
   }
 
   function shuffle(arr) {
@@ -235,6 +236,21 @@
   document.getElementById("continue-btn").addEventListener("click", nextStep);
   document.getElementById("review-btn").addEventListener("click", showReview);
   document.getElementById("review-done-btn").addEventListener("click", returnToAttract);
+
+  document.getElementById("reset-btn").addEventListener("click", () => {
+    document.getElementById("reset-confirm").hidden = false;
+  });
+  document.getElementById("reset-cancel-btn").addEventListener("click", () => {
+    document.getElementById("reset-confirm").hidden = true;
+  });
+  document.getElementById("reset-confirm-btn").addEventListener("click", () => {
+    document.getElementById("reset-confirm").hidden = true;
+    round = [];
+    currentIndex = 0;
+    score = 0;
+    attempts = [];
+    returnToAttract();
+  });
 
   loadData().then(() => show("attract"));
 })();

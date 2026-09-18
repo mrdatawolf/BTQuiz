@@ -445,3 +445,72 @@ h1, h2 { font-family: 'Poppins', system-ui, sans-serif; margin: 0; }
 }
 
 .review-footer .auto-reset-bar { margin-top: 16px; }
+
+/* ---------- Staff reset control ---------- */
+
+.reset-btn {
+  position: fixed;
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.reset-btn:active { opacity: 1; background: rgba(255, 255, 255, 0.12); }
+
+.reset-confirm {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 12, 14, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.reset-confirm[hidden] { display: none; }
+
+.reset-confirm-card {
+  text-align: center;
+  max-width: 440px;
+  padding: clamp(28px, 4vw, 40px);
+  border-radius: 24px;
+  background: var(--navy-deep);
+  border: 1px solid var(--line);
+}
+
+.reset-confirm-card h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.reset-confirm-card p {
+  color: var(--text-secondary);
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.5;
+  margin: 0 0 28px;
+}
+
+.reset-confirm-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.reset-confirm-actions .tap-target {
+  font-size: 18px;
+  padding: 14px 30px;
+}

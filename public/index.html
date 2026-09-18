@@ -71,6 +71,20 @@
       </div>
     </section>
 
+    <!-- Staff control: bail out of a stuck round back to the start screen -->
+    <button id="reset-btn" class="reset-btn" hidden>&#8635; Reset</button>
+
+    <div id="reset-confirm" class="reset-confirm" hidden>
+      <div class="reset-confirm-card">
+        <h3>Reset the quiz?</h3>
+        <p>This clears the current round and returns to the start screen.</p>
+        <div class="reset-confirm-actions">
+          <button class="tap-target secondary" id="reset-cancel-btn">Cancel</button>
+          <button class="tap-target" id="reset-confirm-btn">Reset Now</button>
+        </div>
+      </div>
+    </div>
+
   </div>
   <script src="app.js"></script>
 </body>
