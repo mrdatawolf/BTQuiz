@@ -1,13 +1,14 @@
 (function () {
   "use strict";
 
-  let CONFIG = { title: "AI Policy IQ", subtitle: "Tap to test your knowledge", questionsPerRound: 5, autoResetSeconds: 25 };
+  let CONFIG = { title: "AI Policy IQ", subtitle: "Choose a category to test your knowledge", questionsPerRound: 5, autoResetSeconds: 25 };
   let BANK = [];
   let round = [];
   let currentIndex = 0;
   let score = 0;
   let resetTimer = null;
   let attempts = [];
+  let lastCategory = null; // null = mixed round pulling from every category
 
   const screens = {
     attract: document.getElementById("screen-attract"),
@@ -56,12 +57,40 @@
     BANK = data.questions;
     document.getElementById("attract-title").textContent = CONFIG.title;
     document.getElementById("attract-subtitle").textContent = CONFIG.subtitle;
+    renderCategoryButtons();
   }
 
-  function startRound() {
+  // One button per category found in the question bank, in first-seen order,
+  // plus a final "All Categories" button that pulls a mixed round from every
+  // category. Rebuilt whenever the bank loads since categories live in data.
+  function renderCategoryButtons() {
+    const categories = [...new Set(BANK.map((q) => q.category))];
+    const grid = document.getElementById("category-grid");
+    grid.innerHTML = "";
+
+    categories.forEach((cat) => {
+      const btn = document.createElement("button");
+      btn.className = "tap-target secondary category-btn";
+      btn.textContent = cat;
+      btn.addEventListener("click", () => startRound(cat));
+      grid.appendChild(btn);
+    });
+
+    const allBtn = document.createElement("button");
+    allBtn.className = "tap-target pulse category-btn category-btn-all";
+    allBtn.textContent = "All Categories";
+    allBtn.addEventListener("click", () => startRound(null));
+    grid.appendChild(allBtn);
+  }
+
+  // category === null pulls a mixed round from the whole bank; otherwise the
+  // round is drawn only from questions in that category.
+  function startRound(category) {
     clearTimeout(resetTimer);
-    const count = Math.min(CONFIG.questionsPerRound, BANK.length);
-    round = shuffle(BANK).slice(0, count).map(prepareQuestion);
+    lastCategory = category;
+    const pool = category ? BANK.filter((q) => q.category === category) : BANK;
+    const count = Math.min(CONFIG.questionsPerRound, pool.length);
+    round = shuffle(pool).slice(0, count).map(prepareQuestion);
     currentIndex = 0;
     score = 0;
     attempts = [];
@@ -267,8 +296,7 @@
     show("attract");
   }
 
-  document.getElementById("start-btn").addEventListener("click", startRound);
-  document.getElementById("again-btn").addEventListener("click", startRound);
+  document.getElementById("again-btn").addEventListener("click", () => startRound(lastCategory));
   document.getElementById("continue-btn").addEventListener("click", nextStep);
   document.getElementById("review-btn").addEventListener("click", showReview);
   document.getElementById("review-done-btn").addEventListener("click", returnToAttract);

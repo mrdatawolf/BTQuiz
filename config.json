@@ -1,6 +1,6 @@
 {
   "title": "AI Policy IQ",
-  "subtitle": "Tap to test your knowledge",
+  "subtitle": "Choose a category to test your knowledge",
   "questionsPerRound": 5,
   "autoResetSeconds": 25
 }

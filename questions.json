@@ -326,5 +326,70 @@
     ],
     "correctIndex": 1,
     "explanation": "This option highlights the primary and most urgent risk of having no backup: if the single server fails, is corrupted, or someone accidentally deletes important files, the business may permanently lose data."
+  },
+  {
+    "id": "q26",
+    "category": "AI & Development",
+    "question": "AI can now write and rewrite code in seconds, almost for free. What does that make the most valuable use of your time when building something?",
+    "answers": [
+      "Typing the code yourself instead of using AI",
+      "Clearly deciding what you actually want built and what 'correct' means",
+      "Memorizing more programming syntax",
+      "Choosing the AI model with the fastest response time"
+    ],
+    "correctIndex": 1,
+    "explanation": "When execution is cheap and disposable, the scarce and valuable work shifts to deciding what should be built and how you'll know it's right — not typing the code itself."
+  },
+  {
+    "id": "q27",
+    "category": "AI & Development",
+    "question": "An AI agent can regenerate an entire feature in minutes if the code turns out wrong. Given that, where do costly mistakes now mostly come from?",
+    "answers": [
+      "From bad indentation or formatting in the code",
+      "From unclear or wrong thinking about what the thing should actually do",
+      "From the AI typing too slowly",
+      "Mistakes no longer happen once AI is involved"
+    ],
+    "correctIndex": 1,
+    "explanation": "Redoing code costs almost nothing, so a flawed idea of what 'done' or 'correct' looks like is what actually wastes time and money — the thinking, not the typing."
+  },
+  {
+    "id": "q28",
+    "category": "AI & Development",
+    "question": "Before asking an AI to build a new feature, what is the most valuable thing to do first?",
+    "answers": [
+      "Start prompting immediately and see what the AI produces",
+      "Take time to clarify exactly what the feature needs to do and what 'done' looks like",
+      "Pick the newest AI model available",
+      "Skip planning, since AI-generated code can always be thrown away and redone"
+    ],
+    "correctIndex": 1,
+    "explanation": "A few minutes spent deciding what you actually want prevents many cheap-but-wasted rounds of AI-generated code that solve the wrong problem."
+  },
+  {
+    "id": "q29",
+    "category": "AI & Development",
+    "question": "A teammate says, \"the AI already wrote the code, so we're basically done.\" What's the best response?",
+    "answers": [
+      "Agree — once code exists, the work is finished",
+      "Push back — checking that the code actually does what was intended is still the real work",
+      "Ask the AI to generate even more code, just in case",
+      "Nothing, since code that runs is automatically correct"
+    ],
+    "correctIndex": 1,
+    "explanation": "Code existing isn't the same as code being right. Someone still has to confirm it matches what was actually needed — that judgment call doesn't get automated away."
+  },
+  {
+    "id": "q30",
+    "category": "AI & Development",
+    "question": "Why might spending 20 extra minutes writing a clear description of what you want before turning an AI agent loose save time overall?",
+    "answers": [
+      "It doesn't — AI-generated code never needs to be redone",
+      "A vague request often produces fast but wrong output, which then has to be caught, re-explained, and redone",
+      "Clear descriptions make the AI type faster",
+      "Descriptions are only useful for human developers, not AI"
+    ],
+    "correctIndex": 1,
+    "explanation": "Since generating code is nearly free but rework still costs time and attention, the highest-leverage move is getting the intent right before generation starts, not after."
   }
 ]
