@@ -1,3 +1,4 @@
 node_modules/
 data/responses.jsonl
 Examples/
+.env

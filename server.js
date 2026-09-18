@@ -1,8 +1,10 @@
 const express = require("express");
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4444;
+const IP = process.env.IP || "0.0.0.0";
 const DATA_DIR = path.join(__dirname, "data");
 const RESPONSES_FILE = path.join(DATA_DIR, "responses.jsonl");
 const QUESTIONS_FILE = path.join(__dirname, "questions.json");
@@ -94,7 +96,31 @@ app.get("/api/stats", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`BTQuiz running at http://localhost:${PORT}`);
-  console.log(`Stats dashboard at http://localhost:${PORT}/stats.html`);
+// Non-internal IPv4 addresses of this machine, so a kiosk bound to 0.0.0.0
+// can tell you every URL it can actually be reached at on the network.
+function lanAddresses() {
+  const nets = os.networkInterfaces();
+  const addrs = [];
+  for (const iface of Object.values(nets)) {
+    for (const net of iface || []) {
+      if (net.family === "IPv4" && !net.internal) addrs.push(net.address);
+    }
+  }
+  return addrs;
+}
+
+app.listen(PORT, IP, () => {
+  console.log("BTQuiz");
+  console.log(`  Local:   http://localhost:${PORT}`);
+  if (IP === "0.0.0.0") {
+    const addrs = lanAddresses();
+    if (addrs.length) {
+      addrs.forEach((ip) => console.log(`  Network: http://${ip}:${PORT}   <- touch screen / other devices`));
+    } else {
+      console.log("  Network: no LAN interface detected");
+    }
+  } else if (IP !== "127.0.0.1" && IP !== "localhost") {
+    console.log(`  Network: http://${IP}:${PORT}`);
+  }
+  console.log(`  Stats:   http://localhost:${PORT}/stats.html`);
 });

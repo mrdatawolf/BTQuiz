@@ -7,16 +7,41 @@ chose during the day.
 ## Run it
 
 ```
-npm install
-npm start
+./start.sh
 ```
 
-Then open `http://localhost:3000` on the touch screen. Open it full-screen
-(most browsers: F11, or launch Chrome with `--kiosk`) so it fills a 32" display.
+This checks Node is installed, installs dependencies on first run, creates
+`.env` from `.env.example` if it doesn't exist yet, validates `questions.json`
+and `config.json`, and starts the server — which then prints every URL it's
+reachable at (localhost, and each LAN address if bound to `0.0.0.0`).
 
-The live results dashboard is at `http://localhost:3000/stats.html` — open it
+Open the printed network URL on the touch screen. Open it full-screen (most
+browsers: F11, or launch Chrome with `--kiosk`) so it fills a 32" display.
+
+The live results dashboard is at `/stats.html` on that same address — open it
 on a second device or a second browser tab to watch picks come in during the
 event.
+
+You can also run it directly with `npm install && npm start`, which reads the
+same `.env`.
+
+## Network settings (.env)
+
+`.env` (copy `.env.example` if it's missing) controls what address the server
+binds to:
+
+```
+IP=0.0.0.0
+PORT=4444
+```
+
+- `IP=0.0.0.0` (default) binds to every network interface on the machine, so
+  the touch screen, a laptop, or a phone on the same network can all reach it.
+  Set it to `127.0.0.1` to restrict access to just this machine.
+- `PORT` is the port the server listens on (default `4444`).
+
+`.env` is gitignored since it's meant to vary per machine — `.env.example`
+documents the defaults and is the one checked into the repo.
 
 ## Adding or editing questions
 
@@ -75,7 +100,7 @@ pick:
 {"questionId":"q6","choiceIndex":0,"correct":true,"ts":"2026-09-17T18:04:21.310Z"}
 ```
 
-No names, device info, or IP addresses are recorded — just which question,
+No visitor names, device info, or IP addresses are recorded — just which question,
 which choice, whether it was correct, and a timestamp. `stats.html` reads this
 file and aggregates it into a live chart/table view.
 
