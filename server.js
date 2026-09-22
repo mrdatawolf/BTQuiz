@@ -10,6 +10,7 @@ const RESPONSES_FILE = path.join(DATA_DIR, "responses.jsonl");
 const HITRATES_FILE = path.join(DATA_DIR, "hit-rates.json");
 const QUESTIONS_FILE = path.join(__dirname, "questions.json");
 const CONFIG_FILE = path.join(__dirname, "config.json");
+const TESTIMONIALS_FILE = path.join(__dirname, "testimonials.json");
 
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 if (!fs.existsSync(RESPONSES_FILE)) fs.writeFileSync(RESPONSES_FILE, "");
@@ -65,6 +66,17 @@ app.get("/api/questions", (req, res) => {
     res.json({ config, questions: QUESTIONS });
   } catch (err) {
     res.status(500).json({ error: "Could not load questions" });
+  }
+});
+
+// Testimonials shown on the attract (home) screen. Read fresh on every
+// request — unlike questions.json, editing this file takes effect on the
+// next fetch with no server restart needed.
+app.get("/api/testimonials", (req, res) => {
+  try {
+    res.json(loadJson(TESTIMONIALS_FILE));
+  } catch (err) {
+    res.status(500).json({ error: "Could not load testimonials" });
   }
 });
 

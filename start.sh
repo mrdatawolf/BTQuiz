@@ -29,7 +29,7 @@ if [ ! -d node_modules ]; then
   npm install
 fi
 
-for f in questions.json config.json; do
+for f in questions.json config.json testimonials.json; do
   if ! node -e "JSON.parse(require('fs').readFileSync('$f','utf8'))" 2>/dev/null; then
     echo "Error: $f has invalid JSON — fix it before starting." >&2
     exit 1

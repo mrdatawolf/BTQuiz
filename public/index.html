@@ -71,6 +71,16 @@
       </div>
     </section>
 
+    <!-- Testimonial band: only shown on the attract (home) screen, cycling
+         on its own timer via testimonials.js since the attract screen has
+         no slide changes to hook into -->
+    <div class="testimonial" id="testimonial" aria-live="polite">
+      <div class="testimonial-inner">
+        <p class="testimonial-quote" id="testimonialQuote"></p>
+        <p class="testimonial-author" id="testimonialAuthor"></p>
+      </div>
+    </div>
+
     <!-- Staff control: bail out of a stuck round back to the start screen -->
     <button id="reset-btn" class="reset-btn" hidden>&#8635; Reset</button>
 
@@ -86,6 +96,7 @@
     </div>
 
   </div>
+  <script src="testimonials.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

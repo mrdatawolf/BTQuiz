@@ -11,9 +11,10 @@ chose during the day.
 ```
 
 This checks Node is installed, installs dependencies on first run, creates
-`.env` from `.env.example` if it doesn't exist yet, validates `questions.json`
-and `config.json`, and starts the server — which then prints every URL it's
-reachable at (localhost, and each LAN address if bound to `0.0.0.0`).
+`.env` from `.env.example` if it doesn't exist yet, validates `questions.json`,
+`config.json`, and `testimonials.json`, and starts the server — which then
+prints every URL it's reachable at (localhost, and each LAN address if bound
+to `0.0.0.0`).
 
 Open the printed network URL on the touch screen. Open it full-screen (most
 browsers: F11, or launch Chrome with `--kiosk`) so it fills a 32" display.
@@ -101,6 +102,34 @@ To add a new question, copy the block above, paste it into the array in
 - `autoResetSeconds` — how long the results screen waits before returning to
   the attract ("Tap to Start") screen for the next visitor. The correct/incorrect
   explanation screen has no timeout — it always waits for a "Tap to Continue" tap.
+
+## Testimonials (attract screen)
+
+The attract ("Tap to Start") screen shows a rotating testimonial band across
+the bottom, read from **`testimonials.json`** at the project root. Each
+entry looks like this:
+
+```json
+{
+  "quote": "This cut our onboarding time in half.",
+  "author": "Jane Doe",
+  "role": "Operations Manager",
+  "company": "Acme Co."
+}
+```
+
+- `quote` and `author` are the only required fields — `role` and `company`
+  are optional and combined after the name, e.g. "Jane Doe — Operations
+  Manager, Acme Co." Leave `author` as `""` if you only have a title (e.g.
+  "CFO, Acme Co.").
+- Testimonials play in a shuffled order, advancing automatically every few
+  seconds, and reshuffle once fully cycled through.
+- The band only appears on the attract screen — it disappears as soon as a
+  round starts, and reappears when a visitor returns to the start screen.
+- If `testimonials.json` is empty (`[]`), the band just doesn't appear.
+
+Edit the file and refresh the browser — no restart needed, same as
+`config.json`.
 
 ## Anonymous data collection
 

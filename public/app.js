@@ -25,6 +25,7 @@
     Object.values(screens).forEach((s) => s.classList.remove("active"));
     screens[name].classList.add("active");
     document.getElementById("reset-btn").hidden = name === "attract";
+    if (window.setTestimonialActive) window.setTestimonialActive(name === "attract");
   }
 
   function shuffle(arr) {

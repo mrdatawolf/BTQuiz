@@ -18,6 +18,7 @@
   --text-muted: #7d9a98;
   --good: #4fbd82;
   --critical: #e2635c;
+  --testimonial-h: 25vh;
 }
 
 * { box-sizing: border-box; }
@@ -59,6 +60,13 @@ h1, h2 { font-family: 'Poppins', system-ui, sans-serif; margin: 0; }
 /* ---------- Attract screen ---------- */
 
 #screen-attract.active { align-items: center; justify-content: center; }
+
+/* Reserve room for the testimonial band so the centered attract content
+   (title, subtitle, category buttons) never grows down into it. Only
+   applied once testimonials.json has data — see testimonials.js. */
+body.has-testimonials #screen-attract {
+  padding-bottom: calc(var(--testimonial-h) + clamp(16px, 3vw, 48px) + env(safe-area-inset-bottom, 0px));
+}
 
 .attract-content {
   text-align: center;
@@ -137,6 +145,55 @@ h1, h2 { font-family: 'Poppins', system-ui, sans-serif; margin: 0; }
 @keyframes pulse {
   0%, 100% { box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.55); transform: scale(1); }
   50% { box-shadow: 0 18px 46px -8px rgba(0, 0, 0, 0.65); transform: scale(1.035); }
+}
+
+/* ---------- Testimonial band (attract screen only) ---------- */
+
+.testimonial {
+  display: none;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: var(--testimonial-h);
+  z-index: 5;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3vw;
+  background: linear-gradient(180deg, rgba(10, 25, 28, 0) 0%, rgba(10, 25, 28, 0.94) 24%, var(--navy-deep) 100%);
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.testimonial.is-shown { display: flex; }
+
+.testimonial-inner {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.testimonial.is-visible .testimonial-inner { opacity: 1; }
+
+.testimonial-quote {
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 2.2vh;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.testimonial-quote::before { content: '\201C'; }
+.testimonial-quote::after { content: '\201D'; }
+
+.testimonial-author {
+  font-size: 1.5vh;
+  color: var(--accent);
+  font-weight: 600;
 }
 
 /* ---------- Question screen ---------- */
