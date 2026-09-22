@@ -551,7 +551,7 @@ body.has-testimonials #screen-attract {
   border-radius: 999px;
   padding: 8px 16px;
   cursor: pointer;
-  opacity: 0.55;
+  opacity: 1;
   transition: opacity 0.15s ease, background 0.15s ease;
 }
 
